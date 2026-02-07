@@ -1,0 +1,27 @@
+{
+  "name": "playwright-cucumber-automation",
+  "version": "1.0.0",
+  "description": "Automation testing framework using Playwright, Cucumber, and Chai",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:report": "cucumber-js --format json:reports/cucumber-report.json && node generateHTMLReport.js"
+  },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "automation",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.0.0",
+    "@playwright/test": "^1.40.0",
+    "chai": "^4.3.10",
+    "playwright": "^1.40.0"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.6"
+  }
+}
