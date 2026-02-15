@@ -44,7 +44,7 @@ Feature: Feedback Functionality
     And User click on Contact us button in Feedback form panel
     And User validate the new window is opened and switch main window and swithch to new window and validate the URL
 
-  @Reg
+  @Reg @smoke
   Scenario: TC_010 Validate Feedback form submission
     Given User navigates to login page
     When User enters username "testaccount.gamma@northell.com"
