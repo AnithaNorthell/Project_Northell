@@ -10,6 +10,9 @@ class FeedbackPage extends OrderPage {
 
 
     // Selectors
+    get FeedbackIframe() {
+        return "iframe[title='Feedback Widget']";
+    }
     get FeedbackBtn() {
         return "//button[text()='Feedback']";
     }
@@ -31,12 +34,22 @@ class FeedbackPage extends OrderPage {
     get IHaveAnIdea() {
         return "(//span[contains(text(),'I have an idea')])[1]";
     }
+    get IHaveAnIdeaInputBox() {
+        return "(//textarea[@placeholder='Type here'])[1]";
+    }
     get SomethingNotWorking() {
         return "(//span[contains(text(),'not working')])[1]";
     }
     get CloseSurveyBtn() {
         return "//button[@aria-label='Close survey']";
     }
+    get SendBtn() {
+        return "(//a[@id='btn-submit']//span)[1]";
+    }
+    get WhatKindOfFeedbackDoYouHave() {
+        return "(//*[contains(text(),'What kind of feedback do you have?')])[1]";
+    }
+   
 }
 
 module.exports = FeedbackPage;

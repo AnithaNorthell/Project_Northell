@@ -1,9 +1,11 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('chai');
 const OrderPage = require('../support/pages/OrderPage');
+const FeedbackPage = require('../support/pages/Feedback');
 timeout: 120 * 1000;
 
 let orderPage;
+let feedbackPage;
 Then('validate order page ResponseOs should be displayed', async function () {
     orderPage = new OrderPage(this.page);
     console.log("Locator:", orderPage.ResponseOS);
@@ -242,6 +244,3 @@ Then('User validates the user name and copyright text for Northell Partners in t
     expect(bottomLeftAreaText).to.include('Copyright 2004 - 2026 Northell Partners Ltd. All Rights Reserved. v1.1.0');
 
 });
-
-//*********FeedBack */
-
