@@ -81,8 +81,6 @@ Then('validate left navigation bar is not displayed on order page', async functi
 });
 Then('User validate three dots are displayed in left navigation bar in order page', async function () {
     orderPage = new OrderPage(this.page);
-    // const threeDotsSelector = "(//span[contains(@class,'e-btn-icon e-icons')])[1]";
-    // await this.page.waitForSelector(orderPage.threeDots);
     await this.page.locator(orderPage.firstFileInLeftNavBar).hover();
     const isVisible = await orderPage.isVisible(orderPage.threeDots);
     expect(isVisible).to.be.true;

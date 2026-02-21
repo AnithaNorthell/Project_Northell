@@ -57,7 +57,7 @@ Feature: Order Page Functionality
     Then validate order page Left Nav Bar should be displayed
     Then User renames a file in the order page and validates the renamed file name is updated in the left navigation list in order page
 
-  @Reg
+  @Reg 
   Scenario:TC_05 Choosing 'Delete' opens a confirmation dialog before removal.
     Given User navigates to login page
     When User enters username "testaccount.gamma@northell.com"

@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const OrderPage = require('../support/pages/OrderPage');
 const FeedbackPage = require('../support/pages/Feedback');
 timeout: 120 * 1000;
-
+        
 let feedbackPage;
 Then('User validate Feedback button is displayed in order page', async function () {
     feedbackPage = new FeedbackPage(this.page)

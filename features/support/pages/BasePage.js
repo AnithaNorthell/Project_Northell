@@ -1,3 +1,4 @@
+﻿const { expect } = require('chai');
 /**
  * BasePage - Base class for all page objects
  * Contains common methods and utilities for all pages
@@ -72,7 +73,11 @@ class BasePage {
         console.log(`✓ Element visibility for ${selector}: ${visible}`);
         return visible;
     }
-
+    async isVisibleTrue(selector) {
+        const visible = await this.page.isVisible(selector);
+        console.log(`✓ Element visibility for ${selector}: ${visible}`);
+        expect(visible, `Expected element ${selector} to be visible`).to.be.true;
+    }
     /**
      * Wait for element to be visible
      * @param {string} selector - CSS selector
@@ -173,6 +178,15 @@ class BasePage {
         );
         console.log(`✓ Got all texts: ${texts}`);
         return texts;
+    }
+    async AssertEqualText(selector, expectedText) {
+        const actualText = await this.page.textContent(selector);
+        const trimmedText = actualText?.trim();
+
+        console.log(`✓ Actual Text: ${trimmedText}`);
+        console.log(`✓ Expected Text: ${expectedText}`);
+
+        expect(trimmedText).to.equal(expectedText);
     }
 
     /**

@@ -31,7 +31,7 @@ Feature: Feedback Functionality
     And User closes the Feedback form panel in order page
     Then Validate Feedback form panel is closed in order page
 
-  @Reg @smoke
+  @Reg 
   Scenario: TC_09 Clicking 'Contact us' opens the default mail client with a new email draft
     Given User navigates to login page
     When User enters username "testaccount.gamma@northell.com"
@@ -44,7 +44,7 @@ Feature: Feedback Functionality
     And User click on Contact us button in Feedback form panel
     And User validate the new window is opened and switch main window and swithch to new window and validate the URL
 
-  @Reg @smoke
+  @Reg 
   Scenario: TC_010 Validate Feedback form submission
     Given User navigates to login page
     When User enters username "testaccount.gamma@northell.com"
