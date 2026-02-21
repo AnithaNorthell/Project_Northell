@@ -8,6 +8,7 @@ timeout: 120 * 1000;
 let orderPage;
 let feedbackPage;
 let fileUploadPage;
+let originalFileName;
 
 Then("User clicks on NewRFP in order page", async function () {
     fileUploadPage = new FileUploadPage(this.page)
@@ -146,11 +147,7 @@ Then("User clicks on Close button in mapping page", async function () {
     await fileUploadPage.page.waitForTimeout(5000);
 });
 
-Then("User clicks on Confirm button in mapping page", async function () {
-     fileUploadPage = new FileUploadPage(this.page)
-    await fileUploadPage.click(fileUploadPage.ConfirmBtn);
-    await fileUploadPage.page.waitForTimeout(5000);
-});
+
 //************************FileUploadPage.js***********************
 
 Then("User clicks on Add Button in mapping page", async function () {
@@ -224,4 +221,114 @@ Then("User Validate the Data Extraction In Progress is displayed in mapping page
     let text = await fileUploadPage.getText(fileUploadPage.DataExtractionInProgress);
     console.log("Data Extraction Text:", text);
     expect(text).to.equal("Data extraction in progress…");
+});
+Then("validate the VerticalThreeDot is displayed in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    const verticalThreeDotVisible = await fileUploadPage.isVisible(fileUploadPage.VerticalThreeDot);
+    expect(verticalThreeDotVisible).to.be.true; 
+}); 
+Then("User clicks on VerticalThreeDot in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    await fileUploadPage.click(fileUploadPage.VerticalThreeDot);
+    await fileUploadPage.page.waitForTimeout(5000);
+});
+Then("User Validate the DropdownMenu is displayed in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)
+    const dropdownVisible = await fileUploadPage.isVisible(fileUploadPage.VerticalThreeDotDropdown);
+    expect(dropdownVisible).to.be.true;
+});
+Then("User presses the Esc button in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    await fileUploadPage.pressKey('body', 'Escape');
+    await fileUploadPage.page.waitForTimeout(5000); 
+});
+Then("User Validate the DropdownMenu is not displayed in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)
+    const dropdownVisible = await fileUploadPage.isVisible(fileUploadPage.VerticalThreeDotDropdown);
+    expect(dropdownVisible).to.be.false;
+});
+Then("User Validate the ReUpload is displayed in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    const reUploadVisible = await fileUploadPage.isVisible(fileUploadPage.ReUpload);
+    expect(reUploadVisible).to.be.true; 
+});
+Then("User clicks on ReUpload in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    await fileUploadPage.click(fileUploadPage.ReUpload);
+    await fileUploadPage.page.waitForTimeout(5000);
+});
+Then("User Validate the Rename is displayed in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    const renameVisible = await fileUploadPage.isVisible(fileUploadPage.Rename);
+    expect(renameVisible).to.be.true; 
+});
+Then("User clicks on Rename in mapping page", async function () {   
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    await fileUploadPage.click(fileUploadPage.Rename);
+    await fileUploadPage.page.waitForTimeout(5000);
+});
+Then("User enters the new file name {string} in Rename input field in mapping page", async function (newFileName) {
+
+    const fileUploadPage = new FileUploadPage(this.page);
+
+    this.originalFileName = await fileUploadPage.getText(fileUploadPage.fileNameEditInputbox);
+    console.log("Original File Name:", this.originalFileName);
+
+    await fileUploadPage.fillText(fileUploadPage.fileNameEditInputbox, newFileName);
+    await fileUploadPage.pressKey(fileUploadPage.fileNameEditInputbox, 'Enter');
+    await fileUploadPage.page.waitForTimeout(5000);
+    this.newFileName = newFileName;   // 👈 Store new name also
+});
+Then("User Validate the {string} is renamed successfully in mapping page", async function (Filename) {
+    console.log("Original File Name:", this.originalFileName);
+    console.log("New File Name:", this.newFileName);
+    const fileUploadPage = new FileUploadPage(this.page);
+
+    const fileNameInMapperPage =await fileUploadPage.getText(fileUploadPage.FileNameInMapperPage);
+
+    expect(fileNameInMapperPage).to.include(this.Filename);
+});
+//********************* */
+Then("User clicks on Delete in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    await fileUploadPage.click(fileUploadPage.Delete);
+    await fileUploadPage.page.waitForTimeout(5000);
+});
+
+Then("User Validate the Delete Project is displayed in mapping page", async function () {
+
+    fileUploadPage = new FileUploadPage(this.page)  
+    const deleteProjectVisible = await fileUploadPage.isVisible(fileUploadPage.DeleteProject);
+    expect(deleteProjectVisible).to.be.true; 
+});
+Then("User Validate Are you sure you want to delete this project? This action cannot be undone. is displayed in mapping page", async function () {
+    fileUploadPage = new FileUploadPage(this.page)
+    const confirmationTextVisible = await fileUploadPage.isVisible(fileUploadPage.AreYouSureYouWantToDelete);
+    expect(confirmationTextVisible).to.be.true; 
+});
+Then("User Validate the CancelBtn is displayed in mapping page", async function () {
+    fileUploadPage = new FileUploadPage(this.page)
+    const cancelBtnVisible = await fileUploadPage.isVisible(fileUploadPage.CancelBtn);
+    expect(cancelBtnVisible).to.be.true; 
+});
+Then("User clicks on Confirm button in mapping page", async function () {
+    fileUploadPage = new FileUploadPage(this.page)  
+    await fileUploadPage.click(fileUploadPage.ConfirmBtn);
+    await fileUploadPage.page.waitForTimeout(5000);
+});
+
+Then("User Validate {string} is not displayed in mapping page", async function (fileName) {
+    fileUploadPage = new FileUploadPage(this.page)
+    const unmappedTagBlueBackgroundVisible = await fileUploadPage.getText(`(//a[@title='Test-CustomData' or contains(text(),'${fileName}')])[1]`);
+    expect(unmappedTagBlueBackgroundVisible).not.to.includes(fileName);
 });

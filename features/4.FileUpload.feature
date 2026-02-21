@@ -129,3 +129,93 @@ Feature: Uploading a file in the order page
     Examples:
       | file     |
       | 95Record |
+
+
+@Reg @smoke
+  Scenario: TC_15 Verify the ReUpload functionality of the Vertical three dot in mapping page
+    Given User navigates to login page
+    When User enters username "testaccount.gamma@northell.com"
+    And User enters password "TreeMaroonCharacter7531"
+    And User clicks login button
+    Then User validate current URL is "https://responseos-portal-test.azurewebsites.net/"
+    Then validate order page ResponseOs should be displayed
+    And User clicks on NewRFP in order page
+    Then User clicks on upload RFP "<file>" in order page
+    Then User validates the "<file>" is uploaded successfully in order page
+    Then User Validate "<file>" is displayed in mapping page
+    And User validate Umapped value is displayed in mapping page
+    And validate the VerticalThreeDot is displayed in mapping page
+    And User clicks on VerticalThreeDot in mapping page
+    Then User Validate the DropdownMenu is displayed in mapping page
+    And User presses the Esc button in mapping page
+    Then User Validate the DropdownMenu is not displayed in mapping page
+    And User clicks on VerticalThreeDot in mapping page
+    Then User Validate the ReUpload is displayed in mapping page
+    And User clicks on ReUpload in mapping page
+    Then validate order page Upload RFP should be displayed
+    Then User deletes the uploaded file in the order page and validates the confirmation dialog is displayed before removing the file from the left navigation list in order page
+
+
+
+     Examples:
+      | file     |
+      | 95Record |
+
+ @Reg @smoke
+  Scenario: TC_16 Verify Rename functionality of the Vertical three dot in mapping page
+    Given User navigates to login page
+    When User enters username "testaccount.gamma@northell.com"
+    And User enters password "TreeMaroonCharacter7531"
+    And User clicks login button
+    Then User validate current URL is "https://responseos-portal-test.azurewebsites.net/"
+    Then validate order page ResponseOs should be displayed
+    And User clicks on NewRFP in order page
+    Then User clicks on upload RFP "<file>" in order page
+    Then User validates the "<file>" is uploaded successfully in order page
+    Then User Validate "<file>" is displayed in mapping page
+    And User validate Umapped value is displayed in mapping page
+    And validate the VerticalThreeDot is displayed in mapping page
+    And User clicks on VerticalThreeDot in mapping page
+    Then User Validate the DropdownMenu is displayed in mapping page
+    And User clicks on VerticalThreeDot in mapping page
+    Then User Validate the Rename is displayed in mapping page
+    And User clicks on Rename in mapping page
+    And User enters the new file name "<Renamed>" in Rename input field in mapping page
+    Then User Validate the "<Renamed>" is renamed successfully in mapping page
+    Then User deletes the uploaded file in the order page and validates the confirmation dialog is displayed before removing the file from the left navigation list in order page
+
+
+     Examples:
+      | file     |Renamed|
+      | 95Record |RenamedFile|   
+
+ @Reg  @smoke
+  Scenario: TC_17 Verify functionality of the Vertical three dot in mapping page
+    Given User navigates to login page
+    When User enters username "testaccount.gamma@northell.com"
+    And User enters password "TreeMaroonCharacter7531"
+    And User clicks login button
+    Then User validate current URL is "https://responseos-portal-test.azurewebsites.net/"
+    Then validate order page ResponseOs should be displayed
+    And User clicks on NewRFP in order page
+    Then User clicks on upload RFP "<file>" in order page
+    Then User validates the "<file>" is uploaded successfully in order page
+    Then User Validate "<file>" is displayed in mapping page
+    And User validate Umapped value is displayed in mapping page
+    And validate the VerticalThreeDot is displayed in mapping page
+    And User clicks on VerticalThreeDot in mapping page
+    Then User Validate the DropdownMenu is displayed in mapping page
+    And User clicks on VerticalThreeDot in mapping page
+    Then User Validate the Rename is displayed in mapping page
+    And User clicks on Delete in mapping page
+    Then User Validate the Delete Project is displayed in mapping page
+    And User Validate Are you sure you want to delete this project? This action cannot be undone. is displayed in mapping page
+    And User Validate the CancelBtn is displayed in mapping page
+    Then User clicks on Confirm button in mapping page
+    Then User Validate "<file>" is not displayed in mapping page
+    
+    
+
+     Examples:
+      | file     |Renamed|
+      | 95Record |RenamedFile|         

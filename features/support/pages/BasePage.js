@@ -231,6 +231,33 @@ class BasePage {
         console.log(`✓ Current URL: ${url}`);
         return url;
     }
+
+    /**
+     * Handle dropdown menu functionality
+     * @param {string} menuSelector - CSS selector for the 3-dot icon
+     * @param {string} dropdownSelector - CSS selector for the dropdown menu
+     * @param {string} actionSelector - CSS selector for the specific action (Re-Upload, Rename, Delete)
+     */
+    async handleDropdownMenu(menuSelector, dropdownSelector, actionSelector) {
+        // Click the 3-dot icon to open the dropdown menu
+        await this.click(menuSelector);
+        console.log(`✓ Opened dropdown menu: ${menuSelector}`);
+
+        // Wait for the dropdown menu to be visible
+        await this.waitForElement(dropdownSelector);
+
+        // Click the specific action in the dropdown menu
+        await this.click(actionSelector);
+        console.log(`✓ Selected action: ${actionSelector}`);
+
+        // Ensure the dropdown menu closes after the action
+        const isDropdownVisible = await this.isVisible(dropdownSelector);
+        if (isDropdownVisible) {
+            console.error('✗ Dropdown menu did not close as expected');
+        } else {
+            console.log('✓ Dropdown menu closed successfully');
+        }
+    }
 }
 
 module.exports = BasePage;
